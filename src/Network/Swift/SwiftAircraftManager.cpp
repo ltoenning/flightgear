@@ -99,7 +99,7 @@ void FGSwiftAircraftManager::removeAllPlanes()
     for(auto it = aircraftByCallsign.begin(); it!= aircraftByCallsign.end();)
     {
         it->second->setDie(true);
-        aircraftByCallsign.erase(it);
+        it = aircraftByCallsign.erase(it);
     }
 }
 
