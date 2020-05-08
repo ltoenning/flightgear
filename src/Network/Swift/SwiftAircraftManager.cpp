@@ -110,5 +110,6 @@ double FGSwiftAircraftManager::getElevationAtPosition(const std::string &callsig
     {
         return it->second->getGroundElevation(pos);
     }
+    // Aircraft not found in list
     return std::numeric_limits<double>::quiet_NaN();
 }

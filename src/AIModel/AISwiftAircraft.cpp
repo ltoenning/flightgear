@@ -53,8 +53,8 @@ double FGAISwiftAircraft::getGroundElevation(const SGGeod& pos) const
     posReq.setElevationFt(30000);
     posReq.setLatitudeDeg(pos.getLatitudeDeg());
     posReq.setLongitudeDeg(pos.getLongitudeDeg());
-    this->getGroundElevationM(posReq, alt, nullptr);
-    //globals->get_scenery()->get_elevation_m(posReq,alt,0,_model.get());
-    return alt;
+    if(this->getGroundElevationM(posReq, alt, nullptr))
+        return alt;
+    return std::numeric_limits<double>::quiet_NaN();
 }
 FGAISwiftAircraft::~FGAISwiftAircraft() = default;
