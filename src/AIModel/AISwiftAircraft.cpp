@@ -23,7 +23,12 @@
 
 FGAISwiftAircraft::FGAISwiftAircraft(const std::string& callsign, const std::string& modelString) : FGAIBase(otStatic, false)
 {
-    model_path.append(modelString.substr(modelString.find("/Aircraft/")));
+    std::size_t  pos = modelString.find("/Aircraft/"); // Only supporting AI models from FGDATA/AI/Aircraft for now
+    if(pos != std::string::npos)
+        model_path.append(modelString.substr(pos));
+    else
+        model_path.append("INVALID_PATH");
+
     setCallSign(callsign);
     _searchOrder = PREFER_AI;
 }

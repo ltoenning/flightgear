@@ -30,7 +30,8 @@ FGSwiftAircraftManager::~FGSwiftAircraftManager()
 
 bool FGSwiftAircraftManager::addPlane(const std::string& callsign, std::string modelString)
 {
-    auto curAircraft = new FGAISwiftAircraft(callsign, std::move(modelString));
+    this->removePlane(callsign); // Remove plane if already exists e.g. when rematching is done.
+    auto curAircraft = new FGAISwiftAircraft(callsign, modelString);
     globals->get_subsystem<FGAIManager>()->attach(curAircraft);
 
     aircraftByCallsign.insert(std::pair<std::string, FGAISwiftAircraft*>(callsign, curAircraft));
